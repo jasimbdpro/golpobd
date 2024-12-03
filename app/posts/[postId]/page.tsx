@@ -8,7 +8,10 @@ export default async function PostDetails({ params }: PageProps) {
   const { postId } = await params;
   console.log(postId);
 
-  const apiUrl = "/api/get-all";
+  const apiUrl =
+    process.env.NODE_ENV === "production"
+      ? "https://doya-01.netlify.app//api/get-all"
+      : "http://localhost:3000/api/get-all";
 
   const response = await fetch(apiUrl);
   const posts: SingplePost[] = await response.json();
@@ -33,7 +36,10 @@ export async function generateMetadata({
 }) {
   const { postId } = await params;
 
-  const apiUrl = "/api/get-all";
+  const apiUrl =
+    process.env.NODE_ENV === "production"
+      ? "https://doya-01.netlify.app//api/get-all"
+      : "http://localhost:3000/api/get-all";
 
   const response = await fetch(apiUrl);
   const posts = await response.json();
