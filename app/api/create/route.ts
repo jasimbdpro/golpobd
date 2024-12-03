@@ -9,7 +9,7 @@ const userSchema = new Schema({
     content: { type: String, required: true },
 });
 
-const userModel = models.hots || model("hots", userSchema);
+const userModel = models.doya01 || model("doya01", userSchema);
 
 // Connect to MongoDB only if not already connected
 if (!mongoose.connection.readyState) {
