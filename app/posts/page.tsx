@@ -1,14 +1,9 @@
 import PostCard from "@/components/post-card";
 
 export default async function Posts() {
-  // Conditionally set the API URL based on the environment
-  const apiUrl =
-    process.env.NODE_ENV === "production"
-      ? "https://doya-01.app/api/get-all"
-      : "http://localhost:3000/api/get-all";
+  const apiUrl = "/api/get-all";
 
   try {
-    // Fetch data from the API
     const response = await fetch(apiUrl, {
       next: {
         revalidate: 10,
