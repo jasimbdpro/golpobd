@@ -15,7 +15,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "ভাল বাংলা গল্প",
+  title: "গল্প বিডি | next.js",
   description: "ভাল বাংলা গল্প",
 };
 
