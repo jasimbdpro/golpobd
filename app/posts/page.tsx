@@ -1,7 +1,6 @@
 import PostCard from "@/components/post-card";
 
 export default async function Posts() {
-  // Conditionally set the API URL based on the environment
   const apiUrl = `${process.env.BASE_URL}/api/get-all`;
 
   try {
