@@ -10,7 +10,8 @@ export default async function Posts() {
         revalidate: 10,
       },
     });
-    const posts = await response.json();
+    const reversableposts = await response.json();
+    const posts = [...reversableposts].reverse();
 
     return (
       <div>
