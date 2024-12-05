@@ -6,9 +6,11 @@ export default function Home() {
   const [titleInput, setTitleInput] = useState<string>("");
   const [contentInput, setContentInput] = useState<string>("");
   filter.add(
-    process.env.BANNED_WORDS ? JSON.parse(process.env.BANNED_WORDS) : []
+    process.env.NEXT_PUBLIC_BANNED_WORDS
+      ? JSON.parse(process.env.NEXT_PUBLIC_BANNED_WORDS)
+      : []
   );
-  //BANNED_WORDS is array of profane words comes from .env files
+  //NEXT_PUBLIC_BANNED_WORDS is array of profane words comes from .env files
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
