@@ -1,15 +1,10 @@
 "use client";
 import { FormEvent, useState } from "react";
 import "./page.module.css";
-import filter from "leo-profanity";
 export default function Home() {
   const [titleInput, setTitleInput] = useState<string>("");
   const [contentInput, setContentInput] = useState<string>("");
-  filter.add(
-    process.env.NEXT_PUBLIC_BANNED_WORDS
-      ? JSON.parse(process.env.NEXT_PUBLIC_BANNED_WORDS)
-      : []
-  );
+
   //NEXT_PUBLIC_BANNED_WORDS is array of profane words comes from .env files
 
   const handleSubmit = async (e: FormEvent) => {
@@ -21,8 +16,8 @@ export default function Home() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          title: filter.clean(titleInput),
-          content: filter.clean(contentInput),
+          title: titleInput,
+          content: contentInput,
         }),
       });
 

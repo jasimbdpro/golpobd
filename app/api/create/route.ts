@@ -1,6 +1,11 @@
 import { NextResponse } from 'next/server';
 import mongoose, { Schema, models, model } from 'mongoose';
-
+import filter from "leo-profanity";
+filter.add(
+    process.env.BANNED_WORDS
+        ? JSON.parse(process.env.BANNED_WORDS)
+        : []
+);
 const URI = process.env.URI || "";
 
 // Define the schema and model, ensuring no duplicate definitions
@@ -32,7 +37,7 @@ export async function POST(request: Request) {
         }
 
         // Save data to MongoDB
-        const newUser = new userModel({ title, content });
+        const newUser = new userModel({ title: filter.clean(title), content: filter.clean(content) });
         await newUser.save();
 
         console.log("Data saved to MongoDB:", { title, content });
