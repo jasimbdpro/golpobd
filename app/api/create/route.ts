@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import mongoose, { Schema, models, model } from 'mongoose';
 import filter from "leo-profanity";
-import bannedWords from './banned-words.js'
+import bannedWords from './banned-words-base64.js'
 filter.add(bannedWords);
 const URI = process.env.URI || "";
 
