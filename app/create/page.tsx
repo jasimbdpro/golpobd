@@ -1,10 +1,12 @@
 "use client";
 import { FormEvent, useState } from "react";
 import "./page.module.css";
+import filter from "leo-profanity";
 export default function Home() {
   const [titleInput, setTitleInput] = useState<string>("");
   const [contentInput, setContentInput] = useState<string>("");
-
+  filter.add(process.env.BANNED_WORDS);
+  //BANNED_WORDS is array of profane words comes from .env file
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -14,7 +16,10 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ title: titleInput, content: contentInput }),
+        body: JSON.stringify({
+          title: filter.clean(titleInput),
+          content: filter.clean(contentInput),
+        }),
       });
 
       if (!response.ok) {
@@ -23,18 +28,16 @@ export default function Home() {
       await response.json();
       setTitleInput("");
       setContentInput("");
-      alert('Form submitted successfully!');
+      alert("Form submitted successfully!");
     } catch (error) {
       console.error(error);
     }
   };
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitleInput(e.target.value);
-
   };
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContentInput(e.target.value);
-
   };
   return (
     <div className=" flex justify-center p-40">

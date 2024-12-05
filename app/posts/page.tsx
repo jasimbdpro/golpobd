@@ -4,7 +4,7 @@ export default async function Posts() {
   const apiUrl = `${process.env.BASE_URL}/api/get-all`;
 
   try {
-    // Fetch data from the API
+    // Load data from the API
     const response = await fetch(apiUrl, {
       next: {
         revalidate: 10,
