@@ -8,7 +8,7 @@ export default function Home() {
   filter.add(
     process.env.BANNED_WORDS ? JSON.parse(process.env.BANNED_WORDS) : []
   );
-  //BANNED_WORDS is array of profane words comes from .env file
+  //BANNED_WORDS is array of profane words comes from .env files
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
