@@ -5,7 +5,9 @@ import filter from "leo-profanity";
 export default function Home() {
   const [titleInput, setTitleInput] = useState<string>("");
   const [contentInput, setContentInput] = useState<string>("");
-  filter.add(process.env.BANNED_WORDS);
+  filter.add(
+    process.env.BANNED_WORDS ? JSON.parse(process.env.BANNED_WORDS) : []
+  );
   //BANNED_WORDS is array of profane words comes from .env file
 
   const handleSubmit = async (e: FormEvent) => {

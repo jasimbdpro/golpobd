@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/leo-profanity": "^1.5.4",
     "leo-profanity": "^1.7.0",
     "mongodb": "^6.10.0",
     "mongoose": "^8.8.1",
